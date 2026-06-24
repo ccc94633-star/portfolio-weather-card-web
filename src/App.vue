@@ -4,6 +4,7 @@ import cloudImage from './images/cloud.jpg'
 import defaultImage from './images/default.jpg'
 import rainImage from './images/rain.jpg'
 import summerImage from './images/summer.jpg'
+import thunderImage from './images/thunder.jpg'
 
 const weatherCards = ref([])
 const selectedCity = ref('')
@@ -18,7 +19,7 @@ const getWeatherValue = (elements, elementName) => {
 
 const getWeatherVisual = (description) => {
   if (description.includes('雷')) {
-    return { icon: '⛈️', image: rainImage, imageAlt: '雨水落在綠葉上的景色', imagePosition: 'center 48%' }
+    return { icon: '⛈️', image: thunderImage, imageAlt: '雷雨交加的天空景色', imagePosition: 'center 48%' }
   }
 
   if (description.includes('雨')) {
@@ -468,8 +469,7 @@ body{
   position: relative;
   display: block;
   width: min(100%, 560px);
-  height: min(280px, 100%);
-  min-height: 0;
+  height: 250px;
   margin: 0;
   overflow: hidden;
   border: 1px solid rgb(177 158 106 / 20%);
@@ -945,7 +945,7 @@ body{
 
   .default-visual {
     width: 100%;
-    height: clamp(190px, 31svh, 310px);
+    height: 255px;
   }
 
   .weather-card {
