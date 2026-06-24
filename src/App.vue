@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import cloudImage from './images/cloud.jpg'
+import defaultImage from './images/default.jpg'
 import rainImage from './images/rain.jpg'
 import summerImage from './images/summer.jpg'
 
@@ -334,6 +335,10 @@ onMounted(fetchWeather)
           <strong>{{ selectedCard.maxTemperature }}°C</strong>
         </div>
       </article>
+
+        <figure v-else key="default-visual" class="default-visual">
+          <img :src="defaultImage" alt="陽光穿過盛開的白色花朵" />
+        </figure>
       </Transition>
     </section>
   </main>
@@ -457,6 +462,39 @@ body{
   box-shadow:
     0 22px 55px rgb(65 77 68 / 13%),
     inset 0 0 0 7px rgb(255 255 255 / 42%);
+}
+
+.default-visual {
+  position: relative;
+  display: block;
+  width: min(100%, 560px);
+  height: min(280px, 100%);
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgb(177 158 106 / 20%);
+  border-radius: 30px 9px 30px 9px;
+  background: #eef4e8;
+  box-shadow: 0 22px 55px rgb(65 77 68 / 13%);
+}
+
+.default-visual::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #fffdf7 0, rgb(255 253 247 / 66%) 5%, transparent 18% 82%, rgb(255 253 247 / 66%) 95%, #fffdf7 100%),
+    linear-gradient(180deg, #fffdf7 0, rgb(255 253 247 / 56%) 5%, transparent 18% 82%, rgb(255 253 247 / 56%) 95%, #fffdf7 100%);
+  content: "";
+  pointer-events: none;
+}
+
+.default-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 76%;
+  filter: saturate(0.86) contrast(0.94) brightness(1.03);
 }
 
 .paint-stroke,
@@ -903,6 +941,11 @@ body{
   .weather-stage {
     place-items: start center;
     padding-top: 18px;
+  }
+
+  .default-visual {
+    width: 100%;
+    height: clamp(190px, 31svh, 310px);
   }
 
   .weather-card {
